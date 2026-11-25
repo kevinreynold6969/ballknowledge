@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ball Knowledge — Head-to-Head Player Comparison</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body class="compare-page">
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-mark">BK</span>
+      <span class="brand-name">BALL KNOWLEDGE</span>
+    </a>
+    <span class="top-note">HEAD TO HEAD SCOUTING / COMPARISON</span>
+    <div class="top-status">
+      <span class="status-dot"></span> OBJECTIVE METRIC EVALUATION
+    </div>
+  </header>
+
+  <main class="compare-shell">
+    <!-- Top Action Navigation -->
+    <div class="compare-page-top">
+      <a href="/" class="text-button back-link">← Back to player directory</a>
+      <div class="compare-top-actions">
+        <button id="clear-board-btn" class="text-button" type="button">Clear comparison board ✕</button>
+      </div>
+    </div>
+
+    <!-- Hero Header -->
+    <section class="compare-hero">
+      <div>
+        <p class="eyebrow">HEAD TO HEAD EVALUATION</p>
+        <h1>Side by side.<br><em>Context in every stat.</em></h1>
+      </div>
+      <div class="compare-intro">
+        <p>
+          Compare up to 4 players across any season. Season totals show aggregate volume,
+          while Per-90 metrics reveal output normalized for playing time.
+        </p>
+        <p class="mono muted">
+          * Bars scale relative to the highest player on the board (leader = 100%). Missing values show as N/A with no bar.
+        </p>
+      </div>
+    </section>
+
+    <!-- Radar Chart Visualizer (Step 5) -->
+    <section id="radar-section" class="radar-card" hidden>
+      <div class="radar-header">
+        <div>
+          <span class="eyebrow">TACTICAL RADAR</span>
+          <h3>Stylistic Profile Shape</h3>
+          <p class="muted">
+            Plots 6 key per-90 metrics scaled from 0 to each category's board maximum. Missing values are excluded from polygons to prevent false zeros.
+          </p>
+        </div>
+        <div id="radar-legend" class="radar-legend"></div>
+      </div>
+      <div class="radar-container" id="radar-chart-wrap">
+        <!-- SVG Radar dynamically rendered by static/app.js -->
+      </div>
+    </section>
+
+    <!-- Comparison Board Grid Section -->
+    <section class="compare-section-board" aria-label="Player comparison table">
+      <div id="comparison-target">
+        <!-- Populated dynamically by static/app.js -->
+        <div class="board-placeholder">
+          <span>+</span>
+          <p>Select at least 1 player from the directory or use the search below to compare.</p>
+        </div>
+      </div>
+
+      <!-- Add or Swap Search Panel -->
+      <div class="compare-add-panel">
+        <div>
+          <span class="eyebrow">ADD OR SWAP PLAYERS</span>
+          <h3>Search any player across all seasons</h3>
+          <p class="add-help">Type a player name to add them to this comparison (up to 4 players total).</p>
+        </div>
+        <div class="candidate-search-wrap">
+          <input id="compare-search" class="compare-search" type="search" placeholder="Search any player (e.g. Palmer, Saka, Yamal)..." autocomplete="off" />
+        </div>
+        <div id="compare-candidates" class="candidate-list" aria-live="polite">
+          <!-- Populated dynamically by static/app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodological note -->
+    <section class="methodology-note">
+      <div class="note-box">
+        <h4>Why Relative Bar Scaling?</h4>
+        <p>
+          Fixed arbitrary maximums (e.g. 20 goals) distort comparisons across positions.
+          By scaling each bar relative to the leader among the currently compared players,
+          Ball Knowledge provides an immediate visual representation of who leads each metric and by what relative margin.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-left">
+      <strong>BALL KNOWLEDGE</strong> — Player comparison desk.
+    </div>
+    <div class="footer-right">
+      Photos: Wikipedia / Wikimedia Commons · Licences vary · Data from m-mahadi/top5-football-dataset
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

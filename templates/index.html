@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ball Knowledge — Football Player Scouting & Comparison</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-mark">BK</span>
+      <span class="brand-name">BALL KNOWLEDGE</span>
+    </a>
+    <span class="top-note">FOOTBALL SCOUTING INTELLIGENCE / 24–26</span>
+    <div class="top-status">
+      <span class="status-dot"></span> 5,693 PLAYER SEASONS
+    </div>
+  </header>
+
+  <main class="shell">
+    <!-- Intro Hero -->
+    <section class="intro">
+      <div>
+        <p class="eyebrow">SCOUTING & PLAYER INTELLIGENCE</p>
+        <h1>Read the game<br><em>between the numbers.</em></h1>
+        <p class="lede">
+          A clean, honest platform to compare footballers across Europe's top 5 leagues.
+          Analyze season totals, per-90 production, and stylistic profiles — without hidden assumptions or inflated ratings.
+        </p>
+      </div>
+      <div class="intro-aside">
+        <span class="line-art">↗</span>
+        <span>OBJECTIVE METRICS<br>HONEST MISSING DATA<br>ACCENT-AWARE SEARCH</span>
+      </div>
+    </section>
+
+    <!-- Search & Filter Controls Bar -->
+    <section class="controlbar" aria-label="Player directory search and filters">
+      <div class="control-cell search-wrap">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <div class="search-inner">
+          <label for="search" class="control-label">Player search</label>
+          <input id="search" type="search" placeholder="Search name (e.g. Mbappe, Odegaard)..." autocomplete="off" />
+        </div>
+      </div>
+      <div class="control-cell">
+        <label for="league" class="control-label">League</label>
+        <select id="league">
+          <option value="">All top 5 leagues</option>
+        </select>
+      </div>
+      <div class="control-cell">
+        <label for="season" class="control-label">Season</label>
+        <select id="season">
+          <option value="">All seasons</option>
+        </select>
+      </div>
+      <div class="control-cell">
+        <label for="role" class="control-label">Scouting Role</label>
+        <select id="role">
+          <option value="">All roles</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Sub-controls: Low-minutes toggle & directory status -->
+    <div class="sub-controls">
+      <label class="toggle-control" title="Show or hide players with under 5 full 90-minute matches">
+        <input type="checkbox" id="include-low-minutes" />
+        <span>Include low-minutes players (&lt;5 90s)</span>
+      </label>
+      <div class="directory-meta">
+        <span id="result-count" class="mono muted">Loading directory...</span>
+      </div>
+    </div>
+
+    <!-- Directory Grid -->
+    <section class="workspace" aria-label="Player Directory">
+      <div id="results" class="results-grid" aria-live="polite">
+        <!-- Rendered dynamically by static/app.js -->
+      </div>
+
+      <!-- Loading skeleton -->
+      <div id="loading" class="loading-state" hidden>
+        <div class="spinner"></div>
+        <p class="mono muted">Fetching player records...</p>
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty" class="empty-state" hidden>
+        <div class="empty-icon">∅</div>
+        <h3>No players found</h3>
+        <p>No players matched your filter combination. Try clearing your search query or selecting "All leagues".</p>
+        <button id="reset-filters" class="button button-outline" type="button">Reset all filters</button>
+      </div>
+
+      <!-- Load More Action -->
+      <div id="load-more-wrap" class="load-more-wrap" hidden>
+        <button id="load-more-btn" class="button button-outline" type="button">Load more players ↓</button>
+      </div>
+    </section>
+
+    <!-- About the Data Section -->
+    <section class="about-section">
+      <div class="about-card">
+        <h3>About the Data & Transparency</h3>
+        <div class="about-grid">
+          <div>
+            <h4>Data Sources</h4>
+            <p>
+              Compiled from <code>m-mahadi/top5-football-dataset</code>, integrating match feeds and tracking statistics
+              from <strong>FBref</strong>, <strong>Understat</strong>, <strong>SofaScore</strong>, and game attributes from <strong>EA FC / SoFIFA</strong>.
+            </p>
+          </div>
+          <div>
+            <h4>Honest Missing Data Policy</h4>
+            <p>
+              When a stat was not tracked for a match or player, it is displayed as <code>N/A</code>.
+              Missing values are <em>never</em> silently converted to zero in averages, comparison bars, or similarity vectors.
+            </p>
+          </div>
+          <div>
+            <h4>EA FC Game Estimates</h4>
+            <p>
+              Attributes such as Overall Rating and Transfer Value are video game estimates from EA FC / SoFIFA,
+              clearly labelled as <em>game ratings</em> rather than official transfer valuations.
+            </p>
+          </div>
+          <div>
+            <h4>Minutes Reliability Filter</h4>
+            <p>
+              Per-90 metrics derived from very low sample sizes are statistically volatile.
+              Players with fewer than 5 full 90-minute matches (450 minutes) are flagged with a warning badge and filtered by default.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky Comparison Floating Bar -->
+  <aside id="sticky-bar" class="sticky-bar" aria-label="Active Comparison Selection" hidden>
+    <div class="sticky-inner">
+      <div class="sticky-left">
+        <span class="eyebrow">HEAD TO HEAD</span>
+        <div class="sticky-players" id="sticky-slots">
+          <!-- Populated by static/app.js -->
+        </div>
+      </div>
+      <div class="sticky-actions">
+        <button id="sticky-clear-btn" class="text-button" type="button">Clear</button>
+        <button id="sticky-compare-btn" class="button button-primary" type="button">
+          Compare <span id="sticky-count">0 / 4</span> ↗
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-left">
+      <strong>BALL KNOWLEDGE</strong> — Built for football scouting research and college demonstration.
+    </div>
+    <div class="footer-right">
+      Photos: Wikipedia / Wikimedia Commons (licences vary) · Top-5 European Leagues 2024–2026
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

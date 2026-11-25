@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ball Knowledge — Player Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body class="profile-page">
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-mark">BK</span>
+      <span class="brand-name">BALL KNOWLEDGE</span>
+    </a>
+    <span class="top-note">INDIVIDUAL SCOUTING DOSSIER</span>
+    <div class="top-status">
+      <span class="status-dot"></span> SEASON PERFORMANCE
+    </div>
+  </header>
+
+  <main class="profile-shell">
+    <!-- Top Action Navigation -->
+    <div class="profile-top-actions">
+      <a href="/" class="text-button back-link">← Back to player directory</a>
+      <div id="profile-head-actions">
+        <!-- Add to compare button injected here -->
+      </div>
+    </div>
+
+    <!-- Main Profile Card Container -->
+    <div id="profile-container" aria-live="polite">
+      <!-- Loading Skeleton -->
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p class="mono muted">Loading player scouting dossier...</p>
+      </div>
+    </div>
+
+    <!-- Similar Players Section (Step 7) -->
+    <section class="similar-section" id="similar-section">
+      <div class="similar-head">
+        <div>
+          <span class="eyebrow">STATISTICAL TWINS</span>
+          <h2>Stylistically Similar Players</h2>
+          <p class="muted">
+            The 5 most similar players in the same tactical role and season, computed using cosine similarity across 6 per-90 metrics (nineties ≥ 10).
+            <em>Measures playing style, not overall ability.</em>
+          </p>
+        </div>
+      </div>
+      <div id="similar-grid" class="similar-grid">
+        <!-- Rendered by static/app.js -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky Comparison Floating Bar -->
+  <aside id="sticky-bar" class="sticky-bar" aria-label="Active Comparison Selection" hidden>
+    <div class="sticky-inner">
+      <div class="sticky-left">
+        <span class="eyebrow">HEAD TO HEAD</span>
+        <div class="sticky-players" id="sticky-slots"></div>
+      </div>
+      <div class="sticky-actions">
+        <button id="sticky-clear-btn" class="text-button" type="button">Clear</button>
+        <button id="sticky-compare-btn" class="button button-primary" type="button">
+          Compare <span id="sticky-count">0 / 4</span> ↗
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-left">
+      <strong>BALL KNOWLEDGE</strong> — Player Profile Intelligence.
+    </div>
+    <div class="footer-right">
+      Photos: Wikipedia / Wikimedia Commons · Licences vary · Missing stats shown as N/A
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

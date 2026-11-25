@@ -1,0 +1,28 @@
+# Python Virtual Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# SQLite temporary journals (keep ballknowledge.db tracked!)
+*.db-journal
+*.db-wal
+*.db-shm
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
